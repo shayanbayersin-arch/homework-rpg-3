@@ -1,36 +1,28 @@
 package com.narxoz.rpg.battle;
 
-import java.util.List;
-import java.util.Random;
+import com.narxoz.rpg.adapter.Combatant;
 
-public final class BattleEngine {
-    private static BattleEngine instance;
-    private Random random = new Random(1L);
+public class BattleEngine {
 
-    private BattleEngine() {
-    }
+    private static final BattleEngine INSTANCE = new BattleEngine();
+
+    private BattleEngine() {}
 
     public static BattleEngine getInstance() {
-        if (instance == null) {
-            instance = new BattleEngine();
+        return INSTANCE;
+    }
+
+    public void fight(Combatant a, Combatant b) {
+        System.out.println("=== BATTLE START ===");
+
+        while (a.isAlive() && b.isAlive()) {
+            a.attack(b);
+            if (b.isAlive()) {
+                b.attack(a);
+            }
         }
-        return instance;
-    }
 
-    public BattleEngine setRandomSeed(long seed) {
-        this.random = new Random(seed);
-        return this;
-    }
-
-    public void reset() {
-        
-    }
-
-    public EncounterResult runEncounter(List<Combatant> teamA, List<Combatant> teamB) {
-        EncounterResult result = new EncounterResult();
-        result.setWinner("TBD");
-        result.setRounds(0);
-        result.addLog("TODO: implement battle simulation");
-        return result;
+        Combatant winner = a.isAlive() ? a : b;
+        System.out.println("Winner: " + winner.getName());
     }
 }

@@ -1,33 +1,30 @@
 package com.narxoz.rpg.adapter;
 
-import com.narxoz.rpg.battle.Combatant;
 import com.narxoz.rpg.hero.Hero;
+import com.narxoz.rpg.enemy.Enemy;
 
 public class HeroCombatantAdapter implements Combatant {
+
     private final Hero hero;
 
     public HeroCombatantAdapter(Hero hero) {
         this.hero = hero;
     }
-
     @Override
-    public String getName() {
-        return hero.getName();
+    public void attack(Combatant target) {
+        Enemy enemy = ((EnemyCombatantAdapter) target).getEnemy();
+        hero.attack(enemy);
     }
-
     @Override
-    public int getAttackPower() {
-        // TODO: translate hero power to combat attack
-        return hero.getPower();
+    public void takeDamage(int damage) {
+        hero.takeDamage(damage);
     }
-
-    @Override
-    public void takeDamage(int amount) {
-        hero.receiveDamage(amount);
-    }
-
     @Override
     public boolean isAlive() {
         return hero.isAlive();
+    }
+    @Override
+    public String getName() {
+        return hero.getName();
     }
 }
