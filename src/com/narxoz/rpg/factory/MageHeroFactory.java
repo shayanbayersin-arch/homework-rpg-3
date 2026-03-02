@@ -1,14 +1,12 @@
 package com.narxoz.rpg.factory;
 
-public  class MageHeroFactory implements HeroComponentFactory {
-    @Override
-    public String[] createAbilities() {
-        return new String[] {"Fireball", "Teleport"};
-    }
+import com.narxoz.rpg.hero.Hero;
+import com.narxoz.rpg.hero.Mage;
+
+public class MageHeroFactory implements HeroFactory {
 
     @Override
-    public String[] createWeapon() {
-        return new String[] {"Staff", "Wand"};
+    public Hero createHero(String name) {
+        return new Mage(name);
     }
-    
 }

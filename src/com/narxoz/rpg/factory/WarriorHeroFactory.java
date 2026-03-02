@@ -1,14 +1,12 @@
 package com.narxoz.rpg.factory;
 
-public class WarriorHeroFactory implements HeroComponentFactory {
-    @Override
-    public String[] createAbilities() {
-        return new String[] {"Slash", "Shield Block", "War Cry"};
-    }
+import com.narxoz.rpg.hero.Hero;
+import com.narxoz.rpg.hero.Warrior;
+
+public class WarriorHeroFactory implements HeroFactory {
 
     @Override
-    public String[] createWeapon() {
-        return new String[] {"Sword", "Axe"};
+    public Hero createHero(String name) {
+        return new Warrior(name);
     }
-    
 }
