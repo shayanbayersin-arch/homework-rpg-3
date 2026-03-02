@@ -1,6 +1,7 @@
 package com.narxoz.rpg.adapter;
 
 import com.narxoz.rpg.enemy.Enemy;
+import com.narxoz.rpg.hero.Hero;
 import com.narxoz.rpg.character.Character;
 
 public class EnemyCombatantAdapter implements Combatant {
@@ -35,4 +36,13 @@ public class EnemyCombatantAdapter implements Combatant {
     public String getName() {
         return enemy.getName();
     }
+    @Override
+    public void attack(Combatant target) {
+    if (target instanceof HeroCombatantAdapter heroAdapter) {
+        enemy.attack(heroAdapter.getHero());
+     }
+   }    
+   public Hero getHero() {
+    return hero;
+}
 }

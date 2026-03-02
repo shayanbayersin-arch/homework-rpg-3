@@ -1,5 +1,7 @@
 package com.narxoz.rpg.hero;
 
+import com.narxoz.rpg.enemy.Enemy;
+
 public class Warrior implements Hero {
     private final String name;
     private final int power;
@@ -39,4 +41,14 @@ public class Warrior implements Hero {
     public int getHealth() {
         return health;
     }
+    @Override
+    public void attack(Enemy enemy) {
+    enemy.takeDamage(power);
+    System.out.println(name + " casts spell for " + power);
+}
+
+    @Override
+    public void takeDamage(int amount) {
+    health = Math.max(0, health - amount);
+   }
 }
