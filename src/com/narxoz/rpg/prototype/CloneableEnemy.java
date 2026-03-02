@@ -1,5 +1,8 @@
 package com.narxoz.rpg.prototype;
 
-public class CloneableEnemy {
-    
+
+import com.narxoz.rpg.enemy.Enemy;
+
+public interface CloneableEnemy {
+    Enemy cloneEnemy();
 }
