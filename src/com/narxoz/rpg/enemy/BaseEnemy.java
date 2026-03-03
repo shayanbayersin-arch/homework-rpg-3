@@ -1,8 +1,9 @@
 package com.narxoz.rpg.enemy;
 
 
-import com.narxoz.rpg.character.Character;
+
 import com.narxoz.rpg.combat.Ability;
+import com.narxoz.rpg.hero.Hero;
 import com.narxoz.rpg.loot.LootTable;
 import com.narxoz.rpg.prototype.CloneableEnemy;
 
@@ -17,21 +18,23 @@ public class BaseEnemy implements Enemy, CloneableEnemy {
     private LootTable lootTable;
     private List<Ability> abilities = new ArrayList<>();
 
-    // ===== setters for Builder =====
 
+    public BaseEnemy() {
+    
+    }
     public void setName(String name) { this.name = name; }
     public void setHp(int hp) { this.hp = hp; }
     public void setDamage(int damage) { this.damage = damage; }
     public void setLootTable(LootTable lootTable) { this.lootTable = lootTable; }
     public void setAbilities(List<Ability> abilities) { this.abilities = abilities; }
 
-    // ===== logic =====
+
 
     @Override
-    public void attack(Character target) {
-        target.takeDamage(damage);
-        System.out.println(name + " attacks for " + damage);
-    }
+    public void attack(Hero target) {
+    target.takeDamage(damage);
+    System.out.println(name + " attacks for " + damage);
+}
 
     @Override
     public void takeDamage(int amount) {
@@ -54,7 +57,7 @@ public class BaseEnemy implements Enemy, CloneableEnemy {
         return copy;
     }
 
-    // ===== getters =====
+ 
 
     @Override public String getName() { return name; }
     @Override public int getHealth() { return hp; }
