@@ -1,67 +1,52 @@
 package com.narxoz.rpg.enemy;
 
-
-
-import com.narxoz.rpg.combat.Ability;
 import com.narxoz.rpg.hero.Hero;
+import com.narxoz.rpg.combat.Ability;
 import com.narxoz.rpg.loot.LootTable;
-import com.narxoz.rpg.prototype.CloneableEnemy;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class BaseEnemy implements Enemy, CloneableEnemy {
+public abstract class BaseEnemy implements Enemy {
 
-    private String name;
-    private int hp;
-    private int damage;
-    private LootTable lootTable;
-    private List<Ability> abilities = new ArrayList<>();
+    protected String name;
+    protected int damage;
+    protected int health;
 
-
-    public BaseEnemy() {
-    
+    public BaseEnemy(String name, int damage, int health) {
+        this.name = name;
+        this.damage = damage;
+        this.health = health;
     }
-    public void setName(String name) { this.name = name; }
-    public void setHp(int hp) { this.hp = hp; }
-    public void setDamage(int damage) { this.damage = damage; }
-    public void setLootTable(LootTable lootTable) { this.lootTable = lootTable; }
-    public void setAbilities(List<Ability> abilities) { this.abilities = abilities; }
-
-
 
     @Override
     public void attack(Hero target) {
-    target.takeDamage(damage);
-    System.out.println(name + " attacks for " + damage);
-}
+        target.takeDamage(damage);
+        System.out.println(name + " attacks for " + damage);
+    }
 
     @Override
     public void takeDamage(int amount) {
-        hp = Math.max(0, hp - amount);
+        health = Math.max(0, health - amount);
     }
 
     @Override
     public boolean isAlive() {
-        return hp > 0;
+        return health > 0;
     }
 
     @Override
-    public Enemy cloneEnemy() {
-        BaseEnemy copy = new BaseEnemy();
-        copy.name = this.name;
-        copy.hp = this.hp;
-        copy.damage = this.damage;
-        copy.lootTable = this.lootTable;
-        copy.abilities = new ArrayList<>(this.abilities);
-        return copy;
+    public String getName() {
+        return name;
     }
 
- 
+    @Override
+    public int getHealth() {
+        return health;
+    }
 
-    @Override public String getName() { return name; }
-    @Override public int getHealth() { return hp; }
-    @Override public int getDamage() { return damage; }
-    @Override public List<Ability> getAbilities() { return abilities; }
-    @Override public LootTable getLootTable() { return lootTable; }
+    @Override public int getDefense() { return 0; }
+    @Override public int getSpeed() { return 0; }
+    @Override public List<Ability> getAbilities() { return List.of(); }
+    @Override public LootTable getLootTable() { return null; }
+    @Override public void displayInfo() {}
 }

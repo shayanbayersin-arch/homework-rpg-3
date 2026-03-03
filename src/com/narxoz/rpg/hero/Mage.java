@@ -3,6 +3,7 @@ package com.narxoz.rpg.hero;
 import com.narxoz.rpg.enemy.Enemy;
 
 public class Mage implements Hero {
+
     private final String name;
     private final int power;
     private int health;
@@ -22,15 +23,6 @@ public class Mage implements Hero {
     public int getPower() {
         return power;
     }
-
-    @Override
-    public void receiveDamage(int amount) {
-        health -= amount;
-        if (health < 0) {
-            health = 0;
-        }
-    }
-
     @Override
     public boolean isAlive() {
         return health > 0;
@@ -39,14 +31,15 @@ public class Mage implements Hero {
     public int getHealth() {
         return health;
     }
+
     @Override
     public void attack(Enemy enemy) {
-    enemy.takeDamage(power);
-    System.out.println(name + " casts spell for " + power);
-}
+        enemy.takeDamage(power);
+        System.out.println(name + " casts spell for " + power);
+    }
 
     @Override
     public void takeDamage(int amount) {
-    health = Math.max(0, health - amount);
+        health = Math.max(0, health - amount);
     }
 }

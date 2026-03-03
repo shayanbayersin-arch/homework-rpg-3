@@ -9,7 +9,6 @@ public class Warrior implements Hero {
 
     public Warrior(String name) {
         this.name = name;
-        // TODO: tune stats if needed
         this.power = 20;
         this.health = 120;
     }
@@ -23,16 +22,6 @@ public class Warrior implements Hero {
     public int getPower() {
         return power;
     }
-
-    @Override
-    public void receiveDamage(int amount) {
-       
-        health -= amount;
-        if (health < 0) {
-            health = 0;
-        }
-    }
-
     @Override
     public boolean isAlive() {
         return health > 0;
