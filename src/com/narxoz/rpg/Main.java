@@ -14,7 +14,7 @@ public class Main {
         System.out.println("=== RPG Demo ===");
 
         HeroFactory heroFactory = new WarriorHeroFactory();
-        Hero hero = heroFactory.createHero("Arthur");
+        Hero hero = heroFactory.createHero("Leonidas");
 
         EnemyDirector director = new EnemyDirector();
         Enemy enemy = director.createGoblin(new EnemyBuilder());
