@@ -1,16 +1,14 @@
 package com.narxoz.rpg.enemy;
 
-import com.narxoz.rpg.hero.Hero;
-import com.narxoz.rpg.combat.Ability;
 import com.narxoz.rpg.loot.LootTable;
 
-import java.util.List;
-
-public abstract class BaseEnemy implements Enemy {
-
+public class BaseEnemy implements Enemy {
     protected String name;
-    protected int damage;
     protected int health;
+    protected int damage;
+    protected LootTable lootTable;
+
+    public BaseEnemy() {}
 
     public BaseEnemy(String name, int damage, int health) {
         this.name = name;
@@ -18,35 +16,10 @@ public abstract class BaseEnemy implements Enemy {
         this.health = health;
     }
 
-    @Override
-    public void attack(Hero target) {
-        target.takeDamage(damage);
-        System.out.println(name + " attacks for " + damage);
-    }
+    public void setName(String name) {
+         this.name = name; }
+    public void setHp(int hp) { this.health = hp; }
+    public void setDamage(int damage) { this.damage = damage; }
+    public void setLootTable(LootTable loot) { this.lootTable = loot; }
 
-    @Override
-    public void takeDamage(int amount) {
-        health = Math.max(0, health - amount);
-    }
-
-    @Override
-    public boolean isAlive() {
-        return health > 0;
-    }
-
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public int getHealth() {
-        return health;
-    }
-
-    @Override public int getDefense() { return 0; }
-    @Override public int getSpeed() { return 0; }
-    @Override public List<Ability> getAbilities() { return List.of(); }
-    @Override public LootTable getLootTable() { return null; }
-    @Override public void displayInfo() {}
 }

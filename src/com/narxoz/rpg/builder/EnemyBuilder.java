@@ -7,15 +7,6 @@ import com.narxoz.rpg.loot.LootTable;
 public class EnemyBuilder {
 
     private final BaseEnemy enemy = new BaseEnemy();
-    public void setName(String name) {
-         this.name = name; 
-        }
-    public void setHp(int hp) {
-         this.health = hp; 
-        }
-    public void setDamage(int damage) {
-         this.damage = damage; 
-        }
 
     public EnemyBuilder name(String name) {
         enemy.setName(name);
