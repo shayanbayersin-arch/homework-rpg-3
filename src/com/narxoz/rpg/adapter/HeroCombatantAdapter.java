@@ -28,7 +28,6 @@ public class HeroCombatantAdapter implements Combatant {
         return hero.getName();
     }
     public Hero getHero() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getHero'");
+        return hero;
     }
 }
